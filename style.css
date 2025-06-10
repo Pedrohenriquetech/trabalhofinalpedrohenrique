@@ -1,0 +1,313 @@
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(to right, #e3f2fd, #bbdefb);
+  color: #1a237e;
+  padding: 20px;
+  transition: background 0.3s, color 0.3s;
+}
+
+body.dark-mode {
+  background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+  color: #e3f2fd;
+}
+
+body.dark-mode .day-column {
+  background: #182c3d;
+  color: #e3f2fd;
+}
+
+body.dark-mode .day-column h2 {
+  color: #90caf9;
+  border-bottom: 2px solid #90caf9;
+}
+
+body.dark-mode .task {
+  background: #1e3a5f;
+  color: #ffffff;
+  border: 1px solid #64b5f6;
+}
+
+body.dark-mode .task.done {
+  background: #33691e;
+  color: #e0f7fa;
+}
+
+body.dark-mode .task-buttons button {
+  background: #1976d2;
+  color: white;
+}
+
+body.dark-mode .task-buttons button:hover {
+  background: #0d47a1;
+}
+
+body.dark-mode .add-task input {
+  background: #294155;
+  color: #e3f2fd;
+  border: 1px solid #64b5f6;
+}
+
+body.dark-mode .add-task button {
+  background-color: #2e7d32;
+  color: white;
+}
+
+body.dark-mode .add-task button:hover {
+  background-color: #1b5e20;
+}
+
+body.dark-mode .extra-actions button {
+  background-color: #fb8c00;
+  color: white;
+}
+
+body.dark-mode .extra-actions button:hover {
+  background-color: #ef6c00;
+}
+
+body.dark-mode footer {
+  color: #b0bec5;
+}
+
+body.dark-mode h1 {
+  color: #90caf9;
+}
+
+body.dark-mode header p {
+  color: #bbdefb;
+}
+
+/* Header ajustado para responsividade */
+header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+  padding: 10px 20px;
+  position: relative;
+  text-align: center;
+}
+
+h1 {
+  font-size: 3rem;
+  color: #0d47a1;
+  flex: 1 1 100%;
+  margin: 10px 0 5px;
+  text-align: center;
+}
+
+header p {
+  font-size: 1.2rem;
+  color: #1e3a8a;
+  flex: 1 1 100%;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+/* Botão modo escuro sem position absolute no mobile */
+#toggle-dark-mode {
+  position: static;
+  flex: 0 0 auto;
+  padding: 8px 12px;
+  border: none;
+  background: #1e88e5;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background 0.2s;
+}
+
+#toggle-dark-mode:hover {
+  background: #1565c0;
+}
+
+/* Layout para telas maiores */
+@media (min-width: 769px) {
+  header {
+    justify-content: flex-start;
+  }
+
+  h1 {
+    flex: none;
+    margin-right: 20px;
+    text-align: left;
+  }
+
+  header p {
+    flex: none;
+    margin-right: 20px;
+    margin-bottom: 0;
+    text-align: left;
+  }
+
+  #toggle-dark-mode {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    flex: none;
+  }
+}
+
+/* Planner grid */
+main#planner {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(220px, 1fr));
+  gap: 16px;
+  padding: 0 10px;
+  overflow-x: auto;
+}
+
+.day-column {
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  height: 550px;
+  position: relative;
+  transition: transform 0.2s, background 0.3s;
+}
+
+.day-column:hover {
+  transform: translateY(-4px);
+}
+
+.day-column h2 {
+  text-align: center;
+  margin-bottom: 10px;
+  color: #0d47a1;
+  font-size: 1.4rem;
+  border-bottom: 2px solid #1e88e5;
+  padding-bottom: 8px;
+}
+
+/* Tasks */
+.task {
+  background: #e3f2fd;
+  padding: 10px;
+  border-radius: 12px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background 0.3s, opacity 0.3s;
+  border: 1px solid #90caf9;
+}
+
+.task.done {
+  background: #c8e6c9;
+  text-decoration: line-through;
+  opacity: 0.7;
+}
+
+.task-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.task-buttons button {
+  background: #1e88e5;
+  border: none;
+  color: white;
+  padding: 6px 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.8rem;
+  transition: background 0.2s;
+}
+
+.task-buttons button:hover {
+  background: #1565c0;
+}
+
+/* Input de nova tarefa + extra buttons */
+.add-task {
+  margin-top: auto;
+  padding-top: 12px;
+  border-top: 1px solid #ddd;
+}
+
+.add-task input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #90caf9;
+  border-radius: 8px;
+  margin-bottom: 8px;
+}
+
+.add-task button {
+  width: 100%;
+  padding: 8px;
+  border: none;
+  background-color: #2e7d32;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.2s;
+}
+
+.add-task button:hover {
+  background-color: #1b5e20;
+}
+
+/* Extra actions */
+.extra-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 8px;
+}
+
+.extra-actions button {
+  flex: 1;
+  margin: 0 2px;
+  background-color: #ff9800;
+  color: white;
+  border: none;
+  padding: 6px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.8rem;
+  transition: background 0.2s;
+}
+
+.extra-actions button:hover {
+  background-color: #ef6c00;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  margin-top: 40px;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+/* Responsivo: telas menores que 900px */
+@media (max-width: 900px) {
+  main#planner {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Responsivo: telas menores que 600px */
+@media (max-width: 600px) {
+  main#planner {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .day-column {
+    height: auto;
+  }
+}
